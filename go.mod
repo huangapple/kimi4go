@@ -1,4 +1,4 @@
-module moonshot_demo
+module github.com/huangapple/kimi4go
 
 go 1.22
 
