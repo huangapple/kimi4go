@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-func KimiAi(question string, roleSystemContent string) (string, error) {
+func Ask(question string, roleSystemContent string, maxTokens int) (string, error) {
 	ctx := context.Background()
 
 	client := NewClient[moonshot](moonshot{
@@ -32,7 +32,7 @@ func KimiAi(question string, roleSystemContent string) (string, error) {
 			},
 		},
 		Model:       ModelMoonshot8K,
-		MaxTokens:   4096,
+		MaxTokens:   maxTokens,
 		N:           1,
 		Temperature: "0.3",
 	})
