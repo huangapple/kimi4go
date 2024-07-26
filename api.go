@@ -10,10 +10,10 @@ import (
 
 func Ask(question string, roleSystemContent string, maxTokens int) (string, error) {
 
-	return AskEx(question, roleSystemContent, maxTokens, ModelMoonshot8K, 1, "0.3")
+	return AskEx(question, roleSystemContent, maxTokens, ModelMoonshot8K, 1, "0.3", "1.0")
 }
 
-func AskEx(question string, roleSystemContent string, maxTokens int, model string, N int, temperature string) (string, error) {
+func AskEx(question string, roleSystemContent string, maxTokens int, model string, N int, temperature string, topP string) (string, error) {
 	ctx := context.Background()
 
 	client := NewClient[moonshot](moonshot{
@@ -36,6 +36,7 @@ func AskEx(question string, roleSystemContent string, maxTokens int, model strin
 				Content: &Content{Text: question},
 			},
 		},
+		TopP:        NullableType[float64](topP),
 		Model:       model,
 		MaxTokens:   maxTokens,
 		N:           N,
